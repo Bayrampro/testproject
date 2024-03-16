@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Регистрация</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+   <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="text-center">Регистрация</h3>
+          </div>
+          <div class="card-body">
+            <form action="#" method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+              <div class="form-group">
+              {{ form.username }}
+              {{ form.username.errors }}
+              <label for="{{ form.username.id_for_label }}">Имя</label>
+              </div>
+              <div class="form-group">
+              {{ form.email }}
+              {{ form.email.errors }}
+              <label for="{{ form.email.id_for_label }}">Email</label>
+              </div>
+              <div class="form-group">
+              {{ form.password1 }}
+              {{ form.password1.errors }}
+              <label for="form.password1.id_for_label">Пароль</label>
+              </div>
+              <div class="form-group">
+              {{ form.password2 }}
+              {{ form.password2.errors }}
+              <label for="form.password1.id_for_label">Потдверрдите пароль</label>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">Регистрация</button>
+              </div>
+            </form>
+            <a href="{% url 'login' %}">Логин</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

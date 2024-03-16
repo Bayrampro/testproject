@@ -1,0 +1,203 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee&family=Homemade+Apple&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Заметка</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      :root {
+        --main-red-color: #e06262;
+        --main-black-color: #484848;
+        --main-green-color: forestgreen;
+      }
+
+      .main-red-color {
+        color: var(--main-red-color);
+      }
+
+      .main-green-color {
+        color: var(--main-green-color);
+      }
+
+      .main-black-color {
+        color: var(--main-black-color);
+      }
+
+      html {
+        font-size: 10px;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+
+        background-color: #2d2d2d;
+        height: 100vh;
+      }
+
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      }
+
+      .container {
+        width: 470px;
+        height: 650px;
+        background-color: #f2eecb;
+        border-radius: 4px;
+        padding: 32px;
+      }
+
+      .frame {
+        border: 1px solid var(--main-black-color);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .header {
+        width: 100%;
+      }
+
+      .header-title {
+        text-align: center;
+        font-size: 3.6rem;
+        font-family: "Homemade Apple", sans-serif;
+        text-transform: lowercase;
+        color: var(--main-black-color);
+      }
+
+      .header-btn {
+        font-size: 1.8rem;
+        font-family: "Bungee", sans-serif;
+
+        padding: 16px;
+        background: unset;
+        border: unset;
+        outline: unset;
+
+        cursor: pointer;
+      }
+
+      .header-btn.main-red-color:active {
+        text-shadow: 1px 3px 2px var(--main-red-color);
+      }
+
+      .header-btn.main-black-color:active {
+        text-shadow: 1px 3px 2px var(--main-black-color);
+      }
+
+      .add {
+        padding: 16px;
+      }
+
+      .add-form {
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .add-search {
+        padding: 0 64px;
+        background: unset;
+        border: unset;
+        flex: 1;
+
+        border-bottom: 1px solid var(--main-red-color);
+
+        outline: unset;
+        font-family: "Homemade Apple", sans-serif;
+        font-size: 16px;
+        text-transform: lowercase;
+      }
+
+      .add-btn {
+        font-size: 1.8rem;
+        font-family: "Bungee", sans-serif;
+
+        padding: 8px 16px;
+        padding-right: unset;
+        cursor: pointer;
+
+        background: unset;
+        border: unset;
+        outline: unset;
+      }
+
+      .add-btn.main-black-color:active {
+        text-shadow: 1px 3px 2px var(--main-black-color);
+      }
+
+      .todos {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .todo {
+        position: relative;
+
+        flex: 1 0 auto;
+        text-align: center;
+
+        min-height: 34px;
+        margin: 16px 0 0;
+        font-family: "Homemade Apple", sans-serif;
+        font-size: 24px;
+
+        border-bottom: 1px solid var(--main-red-color);
+      }
+
+      .todo-text {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+        width: 100%;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="frame">
+        <div class="header">
+          <h1 class="header-title">Заметка</h1>
+          <a href="{% url 'logout' %}" class="header-btn main-red-color">Выйти</a>
+        </div>
+        <section class="add">
+          <form class="add-form" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="add-btn main-black-color">добавить</button>
+          </form>
+        </section>
+        <section class="todos">
+          {% for item in todo_items %}
+          <div class="todo">
+            <span class="todo-text">{{item.title}} &nbsp;&nbsp;<a href="{% url 'delete_user_todo' item.pk %}" class="main-red-color">удалить</a>&nbsp;<a href="{% url 'update_user_todo' item.pk %}" class="main-green-color">изменить</a></span>
+          </div>
+          {% endfor %}
+        </section>
+      </div>
+    </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  </body>
+</html>
