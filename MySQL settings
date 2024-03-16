@@ -42,3 +42,5 @@ python manage.py migrate
 
 можете запустить сервер Django
 python manage.py runserver
+
+на Bayram67.pythonanywhere.com база данных стоит на MySQL
